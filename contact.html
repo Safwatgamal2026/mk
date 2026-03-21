@@ -234,6 +234,14 @@
         max-height: 200px;
         padding-bottom: 1.25rem;
       }
+      @media (max-width: 1024px) {
+        .contact-layout {
+          gap: 2.8rem;
+        }
+        .contact-form-wrap {
+          padding: 2rem;
+        }
+      }
       @media (max-width: 768px) {
         .contact-layout {
           grid-template-columns: 1fr;
@@ -241,6 +249,28 @@
         }
         .form-row {
           grid-template-columns: 1fr;
+        }
+        .contact-info,
+        .contact-form-wrap,
+        .faq-list {
+          text-align: center;
+        }
+        .contact-item {
+          justify-content: center;
+          text-align: center;
+        }
+        .contact-item:hover,
+        [dir="rtl"] .contact-item:hover {
+          transform: none;
+        }
+      }
+      @media (max-width: 520px) {
+        .contact-form-wrap {
+          padding: 1.3rem 1rem;
+          border-radius: 14px;
+        }
+        .contact-item {
+          padding: 1rem;
         }
       }
     </style>

@@ -278,17 +278,50 @@
         flex-shrink: 0;
         margin-top: 0.1rem;
       }
+      @media (max-width: 1024px) {
+        .svc-card,
+        .pricing-card {
+          padding: 2rem;
+        }
+      }
       @media (max-width: 768px) {
+        .services-full,
+        .pricing-grid,
+        .why-grid {
+          grid-template-columns: 1fr;
+        }
         .process-steps {
           grid-template-columns: 1fr 1fr;
         }
         .process-step:not(:last-child)::after {
           display: none;
         }
+        .svc-card,
+        .pricing-card,
+        .process-step,
+        .why-item {
+          text-align: center;
+        }
+        .svc-icon,
+        [dir="rtl"] .svc-icon {
+          justify-content: center;
+        }
+        .svc-features li,
+        .pricing-features li,
+        .why-item {
+          justify-content: center;
+        }
       }
       @media (max-width: 480px) {
+        .svc-card,
+        .pricing-card {
+          padding: 1.4rem 1rem;
+        }
         .process-steps {
           grid-template-columns: 1fr;
+        }
+        .service-request-btn {
+          font-size: 0.8rem;
         }
       }
     </style>

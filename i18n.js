@@ -70,7 +70,7 @@ const TRANSLATIONS = {
     cta_p:
       "Let's build something exceptional together. I'm available for freelance work and collaboration.",
     cta_btn1: "Start a Project",
-    cta_btn2: "💬 WhatsApp Me",
+    cta_btn2: "WhatsApp Me",
 
     // ABOUT
     about_label: "About Me",
@@ -393,7 +393,7 @@ const TRANSLATIONS = {
     cta_h: "لديك مشروع في ذهنك؟",
     cta_p: "لنبني شيئاً استثنائياً معاً. أنا متاح للعمل الحر والتعاون.",
     cta_btn1: "ابدأ مشروعك",
-    cta_btn2: "💬 واتساب",
+    cta_btn2: "واتساب",
 
     // ABOUT
     about_label: "من أنا",
