@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services — Mohamed Khalifa</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .services-full {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
+        gap: 1.5rem;
+      }
+      .svc-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 2.5rem;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .svc-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--grad);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s;
+      }
+      .svc-card:hover {
+        border-color: rgba(74, 222, 128, 0.22);
+        transform: translateY(-6px);
+      }
+      .svc-card:hover::after {
+        transform: scaleX(1);
+      }
+      .svc-num {
+        font-family: var(--font-en);
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--green);
+        letter-spacing: 0.14em;
+        margin-bottom: 1.2rem;
+      }
+      .svc-icon {
+        font-size: 2.2rem;
+        margin-bottom: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+      }
+
+      [dir="rtl"] .svc-icon {
+        justify-content: flex-end;
+      }
+      .svc-card h3 {
+        font-family: var(--font-en);
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+      }
+      [dir="rtl"] .svc-card h3 {
+        font-family: var(--font-ar);
+      }
+      .svc-card p {
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+      .svc-features {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .svc-features li {
+        font-size: 0.85rem;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .svc-features li::before {
+        content: "✓";
+        color: var(--green);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .service-request-btn {
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+        padding: 0.65rem 1rem;
+        font-size: 0.82rem;
+      }
+
+      .process-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 0;
+        position: relative;
+      }
+      .process-step {
+        padding: 2rem;
+        position: relative;
+      }
+      .process-step:not(:last-child)::after {
+        content: "→";
+        position: absolute;
+        right: -0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--green);
+        font-size: 1.3rem;
+        z-index: 2;
+      }
+      [dir="rtl"] .process-step:not(:last-child)::after {
+        right: auto;
+        left: -0.5rem;
+        content: "←";
+      }
+      .step-num {
+        font-family: var(--font-en);
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: var(--grad-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+        margin-bottom: 0.8rem;
+        opacity: 0.5;
+      }
+      .process-step h3 {
+        font-family: var(--font-en);
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      [dir="rtl"] .process-step h3 {
+        font-family: var(--font-ar);
+      }
+      .process-step p {
+        color: var(--muted);
+        font-size: 0.85rem;
+        line-height: 1.6;
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+        gap: 1.5rem;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .pricing-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 2.5rem;
+        transition: all 0.3s;
+        position: relative;
+      }
+      .pricing-card.featured {
+        border-color: rgba(74, 222, 128, 0.35);
+        background: linear-gradient(
+          135deg,
+          rgba(74, 222, 128, 0.04),
+          rgba(56, 189, 248, 0.04)
+        );
+      }
+      .pricing-badge {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--grad);
+        color: #060810;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 0.25rem 1rem;
+        border-radius: 100px;
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+      }
+      .pricing-tier {
+        font-family: var(--font-en);
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.75rem;
+      }
+      [dir="rtl"] .pricing-tier {
+        font-family: var(--font-ar);
+        letter-spacing: 0.04em;
+      }
+      .pricing-price {
+        font-family: var(--font-en);
+        font-size: 2.3rem;
+        font-weight: 800;
+        line-height: 1;
+        margin-bottom: 0.3rem;
+      }
+      .pricing-price span {
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--muted);
+      }
+      .pricing-desc {
+        color: var(--muted);
+        font-size: 0.84rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .pricing-features {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+        margin-bottom: 2rem;
+      }
+      .pricing-features li {
+        font-size: 0.87rem;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .pricing-features li::before {
+        content: "✓";
+        color: var(--green);
+        font-weight: 700;
+      }
+      .pricing-features li.no {
+        color: var(--muted);
+      }
+      .pricing-features li.no::before {
+        content: "×";
+        color: var(--muted);
+      }
+      .why-wrap {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1rem;
+      }
+      .why-item {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.05rem 1rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.65rem;
+        color: var(--text);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+      .why-item::before {
+        content: "✔";
+        color: var(--green);
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-top: 0.1rem;
+      }
+      @media (max-width: 768px) {
+        .process-steps {
+          grid-template-columns: 1fr 1fr;
+        }
+        .process-step:not(:last-child)::after {
+          display: none;
+        }
+      }
+      @media (max-width: 480px) {
+        .process-steps {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="particleCanvas"></canvas>
+    <nav id="mainNav">
+      <a href="index.html" class="nav-logo">MK.</a>
+      <div class="nav-center">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+          <li><a href="about.html" data-i18n="nav_about">About</a></li>
+          <li>
+            <a href="services.html" class="active" data-i18n="nav_services"
+              >Services</a
+            >
+          </li>
+          <li>
+            <a href="portfolio.html" data-i18n="nav_portfolio">Portfolio</a>
+          </li>
+          <li><a href="blog.html" data-i18n="nav_blog">Blog</a></li>
+        </ul>
+      </div>
+      <div class="nav-right">
+        <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
+          العربية
+        </button>
+        <a href="contact.html" class="nav-cta" data-i18n="nav_hire">Hire Me</a>
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="page-hero">
+        <div
+          class="glow-bg"
+          style="
+            width: 600px;
+            height: 500px;
+            background: rgba(74, 222, 128, 0.07);
+            top: -150px;
+            left: -100px;
+          "
+        ></div>
+        <div class="dot-grid"></div>
+        <div class="section-label fade-up" data-i18n="svcs_label">
+          What I Offer
+        </div>
+        <h1 class="fade-up delay-1">
+          <span data-i18n="svcs_h1_1">Services built for</span><br /><span
+            data-i18n="svcs_h1_2"
+            >real results.</span
+          >
+        </h1>
+        <p class="fade-up delay-2" data-i18n="svcs_sub">
+          From a single landing page to a full web platform — quality solutions
+          tailored to your goals.
+        </p>
+      </div>
+
+      <section>
+        <div class="services-full">
+          <div class="svc-card reveal d1">
+            <div class="svc-num">01</div>
+            <div class="svc-icon">🌐</div>
+            <h3 data-i18n="svcx1_t">Website Design & Development</h3>
+            <p data-i18n="svcx1_d">
+              Professional, responsive websites tailored to your business goals
+              and brand identity.
+            </p>
+            <ul class="svc-features">
+              <li data-i18n="svcx1_f1">Fully responsive across all devices</li>
+              <li data-i18n="svcx1_f2">
+                HTML5 / CSS3 / JavaScript development
+              </li>
+              <li data-i18n="svcx1_f3">
+                React / Tailwind / Bootstrap solutions
+              </li>
+              <li data-i18n="svcx1_f4">
+                Corporate websites and high-converting landing pages
+              </li>
+            </ul>
+            <a
+              href="#"
+              class="btn btn-outline service-request-btn"
+              data-i18n="req_service_btn"
+              >Request Service</a
+            >
+          </div>
+
+          <div class="svc-card reveal d2">
+            <div class="svc-num">02</div>
+            <div class="svc-icon">🧩</div>
+            <h3 data-i18n="svcx2_t">WordPress Development</h3>
+            <p data-i18n="svcx2_d">
+              Scalable WordPress solutions with modern page builders,
+              localization, and performance best practices.
+            </p>
+            <ul class="svc-features">
+              <li data-i18n="svcx2_f1">Elementor / WPBakery / Gutenberg</li>
+              <li data-i18n="svcx2_f2">Professional theme customization</li>
+              <li data-i18n="svcx2_f3">
+                Multilingual websites with RTL support
+              </li>
+              <li data-i18n="svcx2_f4">
+                Speed, security, and hardening optimization
+              </li>
+            </ul>
+            <a
+              href="#"
+              class="btn btn-outline service-request-btn"
+              data-i18n="req_service_btn"
+              >Request Service</a
+            >
+          </div>
+
+          <div class="svc-card reveal d3">
+            <div class="svc-num">03</div>
+            <div class="svc-icon">🛒</div>
+            <h3 data-i18n="svcx3_t">E-Commerce Development</h3>
+            <p data-i18n="svcx3_d">
+              Build online stores designed to increase conversion rates and
+              simplify operations.
+            </p>
+            <ul class="svc-features">
+              <li data-i18n="svcx3_f1">WooCommerce, Shopify, Salla, Zid</li>
+              <li data-i18n="svcx3_f2">
+                Payment gateways: PayPal, Stripe, Mada
+              </li>
+              <li data-i18n="svcx3_f3">
+                Checkout UX optimized for higher sales
+              </li>
+              <li data-i18n="svcx3_f4">Shipping and tax setup</li>
+            </ul>
+            <a
+              href="#"
+              class="btn btn-outline service-request-btn"
+              data-i18n="req_service_btn"
+              >Request Service</a
+            >
+          </div>
+
+          <div class="svc-card reveal d4">
+            <div class="svc-num">04</div>
+            <div class="svc-icon">⚙️</div>
+            <h3 data-i18n="svcx4_t">Automation & Programming Solutions</h3>
+            <p data-i18n="svcx4_d">
+              Custom automation scripts and integrations that reduce manual work
+              and improve workflow efficiency.
+            </p>
+            <ul class="svc-features">
+              <li data-i18n="svcx4_f1">Python & JavaScript custom scripts</li>
+              <li data-i18n="svcx4_f2">Automating repetitive tasks</li>
+              <li data-i18n="svcx4_f3">API integrations between systems</li>
+              <li data-i18n="svcx4_f4">Workflow optimization for operations</li>
+            </ul>
+            <a
+              href="#"
+              class="btn btn-outline service-request-btn"
+              data-i18n="req_service_btn"
+              >Request Service</a
+            >
+          </div>
+
+          <div class="svc-card reveal d5">
+            <div class="svc-num">05</div>
+            <div class="svc-icon">🎨</div>
+            <h3 data-i18n="svcx5_t">UI/UX Design</h3>
+            <p data-i18n="svcx5_d">
+              Elegant, conversion-focused interfaces that translate seamlessly
+              from design to production code.
+            </p>
+            <ul class="svc-features">
+              <li data-i18n="svcx5_f1">Figma and Adobe XD design workflows</li>
+              <li data-i18n="svcx5_f2">Pixel-perfect implementation</li>
+              <li data-i18n="svcx5_f3">
+                User journey and interaction optimization
+              </li>
+              <li data-i18n="svcx5_f4">Visual consistency across all pages</li>
+            </ul>
+            <a
+              href="#"
+              class="btn btn-outline service-request-btn"
+              data-i18n="req_service_btn"
+              >Request Service</a
+            >
+          </div>
+
+          <div class="svc-card reveal d6">
+            <div class="svc-num">06</div>
+            <div class="svc-icon">⚡</div>
+            <h3 data-i18n="svcx6_t">Performance & SEO Optimization</h3>
+            <p data-i18n="svcx6_d">
+              Technical optimization to boost speed, search visibility, and
+              overall user experience.
+            </p>
+            <ul class="svc-features">
+              <li data-i18n="svcx6_f1">Core Web Vitals optimization</li>
+              <li data-i18n="svcx6_f2">On-page SEO implementation</li>
+              <li data-i18n="svcx6_f3">Site architecture and UX enhancement</li>
+              <li data-i18n="svcx6_f4">
+                Google Analytics & Search Console setup
+              </li>
+            </ul>
+            <a
+              href="#"
+              class="btn btn-outline service-request-btn"
+              data-i18n="req_service_btn"
+              >Request Service</a
+            >
+          </div>
+
+          <div class="svc-card reveal d6">
+            <div class="svc-num">07</div>
+            <div class="svc-icon">🔧</div>
+            <h3 data-i18n="svcx7_t">Technical Support & Maintenance</h3>
+            <p data-i18n="svcx7_d">
+              Reliable post-launch support to keep your website secure, updated,
+              and running smoothly.
+            </p>
+            <ul class="svc-features">
+              <li data-i18n="svcx7_f1">Scheduled website maintenance</li>
+              <li data-i18n="svcx7_f2">Fast issue troubleshooting and fixes</li>
+              <li data-i18n="svcx7_f3">Continuous updates and improvements</li>
+              <li data-i18n="svcx7_f4">Ongoing technical support</li>
+            </ul>
+            <a
+              href="#"
+              class="btn btn-outline service-request-btn"
+              data-i18n="req_service_btn"
+              >Request Service</a
+            >
+          </div>
+
+          <div class="svc-card reveal d6">
+            <div class="svc-num">08</div>
+            <div class="svc-icon">🚀</div>
+            <h3 data-i18n="svcx8_t">Deployment & Hosting Setup</h3>
+            <p data-i18n="svcx8_d">
+              Complete deployment and hosting configuration to launch your
+              project securely and reliably.
+            </p>
+            <ul class="svc-features">
+              <li data-i18n="svcx8_f1">Domain and hosting setup</li>
+              <li data-i18n="svcx8_f2">SSL, backups, and server hardening</li>
+              <li data-i18n="svcx8_f3">Migration and go-live support</li>
+            </ul>
+            <a
+              href="#"
+              class="btn btn-outline service-request-btn"
+              data-i18n="req_service_btn"
+              >Request Service</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="why-wrap">
+          <div class="section-label reveal" data-i18n="why_label">
+            Why Choose Me?
+          </div>
+          <h2 class="section-title reveal d1" data-i18n="why_title">
+            Why Clients Work With Me
+          </h2>
+          <p class="section-sub reveal d2" data-i18n="why_sub">
+            Execution quality, clear communication, and measurable business
+            value in every project.
+          </p>
+          <div class="why-grid reveal d3">
+            <div class="why-item" data-i18n="why1">
+              Strong market experience in Saudi Arabia and the Gulf region
+            </div>
+            <div class="why-item" data-i18n="why2">
+              Professional delivery and commitment to deadlines
+            </div>
+            <div class="why-item" data-i18n="why3">
+              Tailored solutions for each client's unique needs
+            </div>
+            <div class="why-item" data-i18n="why4">
+              Continuous support after project delivery
+            </div>
+            <div class="why-item" data-i18n="why5">
+              Attention to detail and user experience quality
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        style="
+          background: var(--bg2);
+          border-top: 1px solid var(--border);
+          border-bottom: 1px solid var(--border);
+          padding: 5rem 5%;
+        "
+      >
+        <div class="section-label reveal" data-i18n="process_label">
+          Process
+        </div>
+        <h2 class="section-title reveal d1" data-i18n="process_title">
+          How I Work
+        </h2>
+        <p class="section-sub reveal d2" data-i18n="process_sub">
+          A clear, collaborative process from first conversation to final
+          launch.
+        </p>
+        <div class="process-steps">
+          <div class="process-step reveal d1">
+            <div class="step-num">01</div>
+            <h3 data-i18n="step1_t">Discovery</h3>
+            <p data-i18n="step1_d">
+              We discuss your goals and requirements to align on vision.
+            </p>
+          </div>
+          <div class="process-step reveal d2">
+            <div class="step-num">02</div>
+            <h3 data-i18n="step2_t">Planning</h3>
+            <p data-i18n="step2_d">
+              Sitemap, wireframes, and a clear roadmap with milestones.
+            </p>
+          </div>
+          <div class="process-step reveal d3">
+            <div class="step-num">03</div>
+            <h3 data-i18n="step3_t">Design & Build</h3>
+            <p data-i18n="step3_d">
+              Iterative design and development with regular check-ins.
+            </p>
+          </div>
+          <div class="process-step reveal d4">
+            <div class="step-num">04</div>
+            <h3 data-i18n="step4_t">Launch & Support</h3>
+            <p data-i18n="step4_d">
+              Testing, deployment, and post-launch support.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div
+          class="section-label reveal"
+          style="text-align: center"
+          data-i18n="pricing_label"
+        >
+          Pricing
+        </div>
+        <h2
+          class="section-title reveal d1"
+          style="text-align: center"
+          data-i18n="pricing_title"
+        >
+          Simple, Transparent Plans
+        </h2>
+        <p
+          class="section-sub reveal d2"
+          style="text-align: center; margin: 0 auto 3rem"
+          data-i18n="pricing_sub"
+        >
+          Contact me for a custom quote.
+        </p>
+        <div class="pricing-grid">
+          <div class="pricing-card reveal d1">
+            <div class="pricing-tier" data-i18n="plan1_tier">Starter</div>
+            <div class="pricing-price">Contact <span>/ project</span></div>
+            <div class="pricing-desc" data-i18n="plan1_desc">
+              Perfect for small businesses needing a professional online
+              presence.
+            </div>
+            <ul class="pricing-features">
+              <li>Up to 5 pages</li>
+              <li>Responsive design</li>
+              <li>Contact form</li>
+              <li>Basic SEO</li>
+              <li class="no">Custom back-end</li>
+            </ul>
+            <a
+              href="contact.html"
+              class="btn btn-outline"
+              style="width: 100%; justify-content: center"
+              data-i18n="btn_quote"
+              >Get a Quote</a
+            >
+          </div>
+          <div class="pricing-card featured reveal d2">
+            <div class="pricing-badge" data-i18n="plan_popular">
+              Most Popular
+            </div>
+            <div class="pricing-tier" data-i18n="plan2_tier">Professional</div>
+            <div class="pricing-price">Contact <span>/ project</span></div>
+            <div class="pricing-desc" data-i18n="plan2_desc">
+              For growing businesses needing a feature-rich solution.
+            </div>
+            <ul class="pricing-features">
+              <li>Unlimited pages</li>
+              <li>Custom UI/UX design</li>
+              <li>CMS / Admin panel</li>
+              <li>Full SEO optimization</li>
+              <li>API integrations</li>
+            </ul>
+            <a
+              href="contact.html"
+              class="btn btn-primary"
+              style="width: 100%; justify-content: center"
+              data-i18n="btn_quote"
+              >Get a Quote</a
+            >
+          </div>
+          <div class="pricing-card reveal d3">
+            <div class="pricing-tier" data-i18n="plan3_tier">Enterprise</div>
+            <div class="pricing-price">Custom <span>/ project</span></div>
+            <div class="pricing-desc" data-i18n="plan3_desc">
+              For complex platforms and long-term partnerships.
+            </div>
+            <ul class="pricing-features">
+              <li>Full-stack application</li>
+              <li>Custom architecture</li>
+              <li>Scalable infrastructure</li>
+              <li>Dedicated support</li>
+              <li>Ongoing retainer option</li>
+            </ul>
+            <a
+              href="contact.html"
+              class="btn btn-outline"
+              style="width: 100%; justify-content: center"
+              data-i18n="btn_talk"
+              >Let's Talk</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div>
+        <div class="footer-logo">MK.</div>
+        <p style="margin-top: 0.4rem" data-i18n="footer_role">
+          Full-Stack Web Developer
+        </p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+        <li><a href="about.html" data-i18n="nav_about">About</a></li>
+        <li><a href="services.html" data-i18n="nav_services">Services</a></li>
+        <li>
+          <a href="portfolio.html" data-i18n="nav_portfolio">Portfolio</a>
+        </li>
+        <li><a href="blog.html" data-i18n="nav_blog">Blog</a></li>
+        <li><a href="contact.html" data-i18n="nav_hire">Hire Me</a></li>
+      </ul>
+      <p data-i18n="footer_rights">
+        © 2025 Mohamed Khalifa. All rights reserved.
+      </p>
+    </footer>
+    <script src="i18n.js"></script>
+    <script src="particles.js"></script>
+    <script>
+      window.addEventListener("scroll", () =>
+        document
+          .getElementById("mainNav")
+          .classList.toggle("scrolled", scrollY > 40),
+      );
+      document
+        .getElementById("hamburger")
+        .addEventListener("click", function () {
+          this.classList.toggle("open");
+          document.getElementById("navLinks").classList.toggle("open");
+        });
+
+      function bindServiceRequestButtons() {
+        const phone = "966532719336";
+        document.querySelectorAll(".service-request-btn").forEach((btn) => {
+          btn.addEventListener("click", (event) => {
+            event.preventDefault();
+            const card = btn.closest(".svc-card");
+            const serviceName = card
+              ? card.querySelector("h3")?.textContent?.trim() || "Service"
+              : "Service";
+            const lang =
+              localStorage.getItem("mk_lang") ||
+              document.documentElement.lang ||
+              "en";
+            const isArabic =
+              lang === "ar" || document.documentElement.dir === "rtl";
+            const message = isArabic
+              ? `مرحباً، أرغب في طلب هذه الخدمة: ${serviceName}. أرجو تزويدي بالتفاصيل والخطوات التالية.`
+              : `Hi, I would like to request this service: ${serviceName}. Please share the details and next steps.`;
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, "_blank", "noopener");
+          });
+        });
+      }
+
+      bindServiceRequestButtons();
+    </script>
+  </body>
+</html>
