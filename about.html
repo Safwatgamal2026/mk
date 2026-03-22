@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="style.css" />
     <style>
       .about-page section {
-        padding-top: 2.6rem;
-        padding-bottom: 2.6rem;
+        padding-top: 2.4rem;
+        padding-bottom: 2.4rem;
       }
       .about-page .section-title {
-        margin-bottom: 0.6rem;
+        margin-bottom: 0.75rem;
       }
       .about-page .section-sub {
-        margin-bottom: 1.15rem;
+        margin-bottom: 1.35rem;
       }
 
       .about-hero {
@@ -100,6 +100,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
+        margin-top: 0.5rem;
       }
       .profile-card {
         background: var(--card);
@@ -186,6 +187,133 @@
             rgba(10, 15, 24, 0.96)
           );
         padding: 1.4rem;
+        margin-top: 0.4rem;
+      }
+      .premium-content {
+        display: grid;
+        grid-template-columns: 1fr 0.85fr;
+        gap: 2rem;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+      .premium-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .premium-image {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        min-height: 300px;
+        border: 1px solid rgba(74, 222, 128, 0.2);
+        background: linear-gradient(
+          135deg,
+          rgba(14, 20, 32, 0.5),
+          rgba(10, 15, 24, 0.5)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .premium-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .code-symbols {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      @keyframes float-up {
+        0% {
+          transform: translateY(0px);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-60px);
+          opacity: 0;
+        }
+      }
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          opacity: 0.6;
+          filter: drop-shadow(0 0 8px rgba(74, 222, 128, 0.5));
+        }
+        50% {
+          opacity: 1;
+          filter: drop-shadow(0 0 16px rgba(74, 222, 128, 0.8));
+        }
+      }
+      .code-char {
+        position: absolute;
+        font-family: "Courier New", monospace;
+        font-weight: bold;
+        font-size: 3rem;
+        animation:
+          float-up 3s ease-in infinite,
+          pulse-glow 2s ease-in-out infinite;
+      }
+      .char-1 {
+        left: 15%;
+        animation-delay: 0s, 0s;
+        color: #4ade80;
+      }
+      .char-2 {
+        left: 35%;
+        animation-delay: 0.5s, 0.3s;
+        color: #38bdf8;
+      }
+      .char-3 {
+        left: 55%;
+        animation-delay: 1s, 0.6s;
+        color: #4ade80;
+      }
+      .char-4 {
+        left: 75%;
+        animation-delay: 1.5s, 0.9s;
+        color: #38bdf8;
+      }
+      .char-5 {
+        left: 25%;
+        animation-delay: 2s, 1.2s;
+        color: #4ade80;
+      }
+      .char-6 {
+        left: 65%;
+        animation-delay: 2.5s, 1.5s;
+        color: #38bdf8;
+      }
+      .center-text {
+        position: absolute;
+        text-align: center;
+        z-index: 2;
+      }
+      .center-text p {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.9rem;
+        margin: 0;
+      }
+      .premium-image::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(74, 222, 128, 0.15),
+          rgba(56, 189, 248, 0.1)
+        );
       }
       .value-grid {
         margin-top: 1rem;
@@ -223,6 +351,7 @@
         display: grid;
         grid-template-columns: 1.06fr 0.94fr;
         gap: 1.2rem;
+        margin-top: 0.5rem;
       }
       .skills-highlights {
         margin: 0.2rem 0 0.9rem;
@@ -342,8 +471,9 @@
 
       .exp-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
         gap: 0.9rem;
+        margin-top: 0.5rem;
       }
       .exp-card {
         border-radius: 14px;
@@ -404,6 +534,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
+        margin-top: 0.5rem;
       }
       .cred-card {
         border-radius: 14px;
@@ -481,13 +612,71 @@
         padding: 0.32rem 0.58rem;
         font-size: 0.76rem;
       }
+      .prog-stack {
+        margin-top: 0.85rem;
+        border: 1px solid rgba(74, 222, 128, 0.18);
+        border-radius: 12px;
+        background: rgba(74, 222, 128, 0.05);
+        padding: 0.7rem;
+      }
+      .prog-stack h4 {
+        font-family: var(--font-en);
+        font-size: 0.84rem;
+        margin-bottom: 0.2rem;
+        color: #c7f7da;
+      }
+      [dir="rtl"] .prog-stack h4 {
+        font-family: var(--font-ar);
+      }
+      .prog-note {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-bottom: 0.55rem;
+        line-height: 1.6;
+      }
+      .prog-list {
+        display: grid;
+        gap: 0.5rem;
+      }
+      .prog-item {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 0.5rem;
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .prog-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.7rem;
+        align-items: baseline;
+        margin-bottom: 0.35rem;
+        font-size: 0.78rem;
+      }
+      .prog-top span {
+        color: var(--muted);
+        font-size: 0.72rem;
+      }
+      .prog-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.55rem;
+      }
+      .prog-tool {
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(8, 14, 22, 0.72);
+        padding: 0.24rem 0.52rem;
+        font-size: 0.72rem;
+      }
 
       @media (max-width: 1024px) {
         .about-hero-grid,
         .skills-layout,
         .cred-grid,
         .profile-shell,
-        .exp-grid {
+        .exp-grid,
+        .premium-content {
           grid-template-columns: 1fr;
         }
         .specialty-grid {
@@ -499,17 +688,35 @@
       }
       @media (max-width: 768px) {
         .about-page section {
-          padding-top: 1.9rem;
-          padding-bottom: 1.9rem;
+          padding-top: 1.8rem;
+          padding-bottom: 1.8rem;
         }
         .about-hero {
-          padding-top: 3rem;
-          padding-bottom: 2rem;
+          padding-top: 2.8rem;
+          padding-bottom: 1.8rem;
           text-align: center;
         }
         .hero-tags,
         .about-premium-cta,
         .lang-pills {
+          justify-content: center;
+        }
+        .premium-content {
+          gap: 1.2rem;
+        }
+        .premium-image {
+          min-height: 220px;
+        }
+        .prog-top {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 0.15rem;
+        }
+        .prog-stack {
+          text-align: center;
+        }
+        .prog-tools {
           justify-content: center;
         }
         .skills-highlight {
@@ -615,6 +822,78 @@
       </section>
 
       <section>
+        <div class="about-premium reveal">
+          <div class="section-label" data-i18n="about_plus_label">
+            Why Work With Me
+          </div>
+          <div class="premium-content">
+            <div class="premium-text">
+              <h2 class="section-title" data-i18n="about_plus_title">
+                Strategic Thinking + Clean Execution
+              </h2>
+              <p class="section-sub" data-i18n="about_plus_sub">
+                I don't just build pages. I design complete digital experiences
+                that support your business goals.
+              </p>
+            </div>
+            <div class="premium-image">
+              <div class="code-symbols">
+                <span class="code-char char-1">{</span>
+                <span class="code-char char-2">&lt;</span>
+                <span class="code-char char-3">/</span>
+                <span class="code-char char-4">&gt;</span>
+                <span class="code-char char-5">}</span>
+                <span class="code-char char-6">;</span>
+                <div class="center-text">
+                  <p data-i18n="about_plus_code_label">Clean Code &amp; Design</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="value-grid">
+            <article class="value-card reveal d1">
+              <h3 data-i18n="about_plus_1_t">Goal-Driven Development</h3>
+              <p data-i18n="about_plus_1_d">
+                Every section is built to serve a clear business objective.
+              </p>
+            </article>
+            <article class="value-card reveal d2">
+              <h3 data-i18n="about_plus_2_t">Clean, Scalable Code</h3>
+              <p data-i18n="about_plus_2_d">
+                Maintainable architecture that supports future growth.
+              </p>
+            </article>
+            <article class="value-card reveal d3">
+              <h3 data-i18n="about_plus_3_t">Fast and Intuitive Interfaces</h3>
+              <p data-i18n="about_plus_3_d">
+                Responsive interfaces optimized for speed and clarity.
+              </p>
+            </article>
+            <article class="value-card reveal d4">
+              <h3 data-i18n="about_plus_4_t">Transparent Workflow</h3>
+              <p data-i18n="about_plus_4_d">
+                Clear updates and predictable delivery from kickoff to launch.
+              </p>
+            </article>
+          </div>
+          <div class="about-premium-cta reveal d4">
+            <a
+              href="portfolio.html"
+              class="btn btn-outline"
+              data-i18n="about_plus_btn1"
+              >Explore My Work →</a
+            >
+            <a
+              href="contact.html"
+              class="btn btn-primary"
+              data-i18n="about_plus_btn2"
+              >Start Your Project</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section>
         <div class="profile-shell">
           <article class="profile-card reveal-left">
             <h3 data-i18n="about_plus_title">
@@ -683,61 +962,6 @@
             <span class="floating-chip chip-a">Frontend</span>
             <span class="floating-chip chip-b">WordPress</span>
           </article>
-        </div>
-      </section>
-
-      <section>
-        <div class="about-premium reveal">
-          <div class="section-label" data-i18n="about_plus_label">
-            Why Work With Me
-          </div>
-          <h2 class="section-title" data-i18n="about_plus_title">
-            Strategic Thinking + Clean Execution
-          </h2>
-          <p class="section-sub" data-i18n="about_plus_sub">
-            I don't just build pages. I design complete digital experiences that
-            support your business goals.
-          </p>
-          <div class="value-grid">
-            <article class="value-card reveal d1">
-              <h3 data-i18n="about_plus_1_t">Goal-Driven Development</h3>
-              <p data-i18n="about_plus_1_d">
-                Every section is built to serve a clear business objective.
-              </p>
-            </article>
-            <article class="value-card reveal d2">
-              <h3 data-i18n="about_plus_2_t">Clean, Scalable Code</h3>
-              <p data-i18n="about_plus_2_d">
-                Maintainable architecture that supports future growth.
-              </p>
-            </article>
-            <article class="value-card reveal d3">
-              <h3 data-i18n="about_plus_3_t">Fast and Intuitive Interfaces</h3>
-              <p data-i18n="about_plus_3_d">
-                Responsive interfaces optimized for speed and clarity.
-              </p>
-            </article>
-            <article class="value-card reveal d4">
-              <h3 data-i18n="about_plus_4_t">Transparent Workflow</h3>
-              <p data-i18n="about_plus_4_d">
-                Clear updates and predictable delivery from kickoff to launch.
-              </p>
-            </article>
-          </div>
-          <div class="about-premium-cta reveal d4">
-            <a
-              href="portfolio.html"
-              class="btn btn-outline"
-              data-i18n="about_plus_btn1"
-              >Explore My Work →</a
-            >
-            <a
-              href="contact.html"
-              class="btn btn-primary"
-              data-i18n="about_plus_btn2"
-              >Start Your Project</a
-            >
-          </div>
         </div>
       </section>
 
@@ -1110,6 +1334,48 @@
                   ><span data-i18n="lang_lvl_intermediate">Intermediate</span>
                 </div>
                 <div class="lang-level-bar"><i style="width: 62%"></i></div>
+              </div>
+            </div>
+            <div class="prog-stack">
+              <h4 data-i18n="prog_lang_title">Programming Languages</h4>
+              <p class="prog-note" data-i18n="prog_lang_note">
+                Core stack used in production projects and automation workflows.
+              </p>
+              <div class="prog-list">
+                <div class="prog-item">
+                  <div class="prog-top">
+                    <strong data-i18n="prog_js">JavaScript</strong>
+                    <span data-i18n="prog_lvl_advanced">Advanced</span>
+                  </div>
+                  <div class="lang-level-bar"><i style="width: 92%"></i></div>
+                </div>
+                <div class="prog-item">
+                  <div class="prog-top">
+                    <strong data-i18n="prog_py">Python</strong>
+                    <span data-i18n="prog_lvl_strong">Strong</span>
+                  </div>
+                  <div class="lang-level-bar"><i style="width: 80%"></i></div>
+                </div>
+                <div class="prog-item">
+                  <div class="prog-top">
+                    <strong data-i18n="prog_php">PHP</strong>
+                    <span data-i18n="prog_lvl_good">Good</span>
+                  </div>
+                  <div class="lang-level-bar"><i style="width: 72%"></i></div>
+                </div>
+                <div class="prog-item">
+                  <div class="prog-top">
+                    <strong data-i18n="prog_sql">SQL</strong>
+                    <span data-i18n="prog_lvl_good">Good</span>
+                  </div>
+                  <div class="lang-level-bar"><i style="width: 76%"></i></div>
+                </div>
+              </div>
+              <div class="prog-tools">
+                <span class="prog-tool" data-i18n="prog_tool_1">React</span>
+                <span class="prog-tool" data-i18n="prog_tool_2">Node.js</span>
+                <span class="prog-tool" data-i18n="prog_tool_3">WordPress</span>
+                <span class="prog-tool" data-i18n="prog_tool_4">REST APIs</span>
               </div>
             </div>
           </article>

@@ -461,28 +461,28 @@ section {
 .fade-up {
   opacity: 0;
   transform: translateY(28px);
-  animation: fadeUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transition:
+    opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.fade-up.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 .delay-1 {
-  animation-delay: 0.12s;
+  transition-delay: 0.12s;
 }
 .delay-2 {
-  animation-delay: 0.25s;
+  transition-delay: 0.25s;
 }
 .delay-3 {
-  animation-delay: 0.38s;
+  transition-delay: 0.38s;
 }
 .delay-4 {
-  animation-delay: 0.52s;
+  transition-delay: 0.52s;
 }
 .delay-5 {
-  animation-delay: 0.66s;
+  transition-delay: 0.66s;
 }
 
 /* SKILL BAR */

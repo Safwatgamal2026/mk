@@ -183,6 +183,20 @@ const TRANSLATIONS = {
     lang1: "Arabic",
     lang2: "English",
     lang3: "French",
+    prog_lang_title: "Programming Languages",
+    prog_lang_note:
+      "Core stack used in production projects and automation workflows.",
+    prog_js: "JavaScript",
+    prog_py: "Python",
+    prog_php: "PHP",
+    prog_sql: "SQL",
+    prog_lvl_advanced: "Advanced",
+    prog_lvl_strong: "Strong",
+    prog_lvl_good: "Good",
+    prog_tool_1: "React",
+    prog_tool_2: "Node.js",
+    prog_tool_3: "WordPress",
+    prog_tool_4: "REST APIs",
 
     // SERVICES
     svcs_label: "What I Offer",
@@ -553,6 +567,20 @@ const TRANSLATIONS = {
     lang1: "العربية",
     lang2: "الإنجليزية",
     lang3: "الفرنسية",
+    prog_lang_title: "لغات البرمجة",
+    prog_lang_note:
+      "التقنيات الأساسية التي أستخدمها في المشاريع الفعلية وأتمتة سير العمل.",
+    prog_js: "JavaScript",
+    prog_py: "Python",
+    prog_php: "PHP",
+    prog_sql: "SQL",
+    prog_lvl_advanced: "متقدم",
+    prog_lvl_strong: "قوي",
+    prog_lvl_good: "جيد",
+    prog_tool_1: "React",
+    prog_tool_2: "Node.js",
+    prog_tool_3: "WordPress",
+    prog_tool_4: "REST APIs",
 
     // SERVICES
     svcs_label: "ما أقدمه",
