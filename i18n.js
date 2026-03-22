@@ -197,6 +197,8 @@ const TRANSLATIONS = {
     prog_tool_2: "Node.js",
     prog_tool_3: "WordPress",
     prog_tool_4: "REST APIs",
+    about_plus_code_label: "Clean Code & Design",
+    about_profile_code_label: "Strategic Thinking",
 
     // SERVICES
     svcs_label: "What I Offer",
@@ -581,6 +583,8 @@ const TRANSLATIONS = {
     prog_tool_2: "Node.js",
     prog_tool_3: "WordPress",
     prog_tool_4: "REST APIs",
+    about_plus_code_label: "كود نظيف وتصميم احترافي",
+    about_profile_code_label: "التفكير الاستراتيجي",
 
     // SERVICES
     svcs_label: "ما أقدمه",
