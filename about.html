@@ -137,9 +137,91 @@
         font-size: 0.8rem;
       }
 
+      /* Scroll Reveal Animations */
+      @keyframes reveal-fade-up {
+        0% {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes reveal-fade-left {
+        0% {
+          opacity: 0;
+          transform: translateX(-32px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes reveal-fade-right {
+        0% {
+          opacity: 0;
+          transform: translateX(32px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes reveal-fade-scale {
+        0% {
+          opacity: 0;
+          transform: scale(0.92);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .reveal,
+      .reveal-left,
+      .reveal-right,
+      .reveal-scale,
+      .fade-up {
+        opacity: 0;
+        animation-fill-mode: both;
+        animation-duration: 0.72s;
+        animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .reveal {
+        animation-name: reveal-fade-up;
+      }
+      .reveal-left {
+        animation-name: reveal-fade-left;
+      }
+      .reveal-right {
+        animation-name: reveal-fade-right;
+      }
+      .reveal-scale {
+        animation-name: reveal-fade-scale;
+      }
+      .fade-up {
+        animation-name: reveal-fade-up;
+      }
+
+      .revealed {
+        opacity: 1;
+      }
+
+      /* Staggered delays for grouped reveals */
+      .delay-1 { animation-delay: 0.28s; }
+      .delay-2 { animation-delay: 0.48s; }
+      .delay-3 { animation-delay: 0.68s; }
+      .d1 { animation-delay: 0.3s; }
+      .d2 { animation-delay: 0.5s; }
+      .d3 { animation-delay: 0.7s; }
+      .d4 { animation-delay: 0.9s; }
+
       .profile-shell {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 1rem;
         margin-top: 0.5rem;
       }
@@ -310,7 +392,7 @@
       }
       .premium-content {
         display: grid;
-        grid-template-columns: 1fr 0.85fr;
+        grid-template-columns: 1fr;
         gap: 2rem;
         align-items: center;
         margin-bottom: 1.5rem;
@@ -591,10 +673,10 @@
       .exp-grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 0;
+        gap: 1.2rem;
         margin-top: 0.5rem;
-        border-left: 2px solid rgba(74, 222, 128, 0.3);
-        padding-left: 1.5rem;
+        border-left: 2px solid rgba(74, 222, 128, 0.4);
+        padding-left: 1.8rem;
         position: relative;
       }
       .exp-grid::before {
@@ -620,22 +702,22 @@
         border: 2px solid var(--bg);
       }
       .exp-card {
-        border-radius: 0;
-        border: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        background: rgba(255, 255, 255, 0.01);
+        border-radius: 12px;
+        border: 1px solid rgba(74, 222, 128, 0.15);
+        background: rgba(74, 222, 128, 0.03);
         overflow: hidden;
-        transition: all 0.3s ease;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .exp-card:last-child {
-        border-bottom: none;
+        border-bottom: 1px solid rgba(74, 222, 128, 0.15);
       }
       .exp-card:first-child {
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px solid rgba(74, 222, 128, 0.15);
       }
       .exp-card:hover {
-        background: rgba(74, 222, 128, 0.08);
-        border-bottom-color: rgba(74, 222, 128, 0.2);
+        background: rgba(74, 222, 128, 0.12);
+        border-color: rgba(74, 222, 128, 0.35);
+        box-shadow: 0 8px 24px rgba(74, 222, 128, 0.15);
       }
       .exp-card:hover .exp-thumb::after {
         background: linear-gradient(
@@ -645,7 +727,7 @@
         );
       }
       .exp-thumb {
-        height: 120px;
+        height: 100px;
         position: relative;
         overflow: hidden;
         display: flex;
@@ -653,9 +735,10 @@
         justify-content: center;
         background: linear-gradient(
           135deg,
-          rgba(74, 222, 128, 0.1),
-          rgba(56, 189, 248, 0.08)
+          rgba(74, 222, 128, 0.15),
+          rgba(56, 189, 248, 0.12)
         );
+        transition: background 0.35s ease;
       }
       .exp-thumb img {
         width: 100%;
@@ -673,14 +756,26 @@
         inset: 0;
         background: linear-gradient(
           to right,
-          rgba(74, 222, 128, 0.22),
-          rgba(56, 189, 248, 0.14)
+          rgba(74, 222, 128, 0.15),
+          rgba(56, 189, 248, 0.1)
         );
         pointer-events: none;
+        transition: background 0.35s ease;
+      }
+      .exp-card:hover .exp-thumb::after {
+        background: linear-gradient(
+          to right,
+          rgba(74, 222, 128, 0.3),
+          rgba(56, 189, 248, 0.2)
+        );
       }
       .exp-body {
-        padding: 1.2rem 1.2rem 1.2rem 0;
+        padding: 1.3rem 1.2rem 1.3rem 0;
         position: relative;
+        transition: all 0.35s ease;
+      }
+      .exp-card:hover .exp-body {
+        padding-left: 0.3rem;
       }
       .exp-body::before {
         content: "";
@@ -696,27 +791,38 @@
       }
       .exp-year {
         color: var(--green);
-        font-size: 0.74rem;
-        letter-spacing: 0.07em;
-        margin-bottom: 0.35rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.4rem;
+        font-weight: 500;
       }
       .exp-title {
         font-family: var(--font-en);
-        font-size: 0.94rem;
-        margin-bottom: 0.2rem;
+        font-size: 0.97rem;
+        margin-bottom: 0.25rem;
+        font-weight: 600;
+        color: var(--text);
       }
       [dir="rtl"] .exp-title {
         font-family: var(--font-ar);
       }
       .exp-company {
         color: var(--muted);
-        font-size: 0.8rem;
-        margin-bottom: 0.4rem;
+        font-size: 0.82rem;
+        margin-bottom: 0.5rem;
+        transition: color 0.35s ease;
+      }
+      .exp-card:hover .exp-company {
+        color: var(--green);
       }
       .exp-desc {
         color: var(--muted);
-        font-size: 0.82rem;
-        line-height: 1.62;
+        font-size: 0.83rem;
+        line-height: 1.68;
+        transition: color 0.35s ease;
+      }
+      .exp-card:hover .exp-desc {
+        color: rgba(255, 255, 255, 0.75);
       }
 
       .cred-grid {
@@ -878,6 +984,13 @@
           width: 280px;
           height: 280px;
         }
+        .delay-1 { animation-delay: 0.15s !important; }
+        .delay-2 { animation-delay: 0.25s !important; }
+        .delay-3 { animation-delay: 0.35s !important; }
+        .d1 { animation-delay: 0.2s !important; }
+        .d2 { animation-delay: 0.35s !important; }
+        .d3 { animation-delay: 0.5s !important; }
+        .d4 { animation-delay: 0.65s !important; }
       }
       @media (max-width: 768px) {
         .about-page section {
@@ -932,6 +1045,13 @@
         .specialty-grid {
           grid-template-columns: 1fr;
         }
+        .delay-1 { animation-delay: 0.1s !important; }
+        .delay-2 { animation-delay: 0.18s !important; }
+        .delay-3 { animation-delay: 0.26s !important; }
+        .d1 { animation-delay: 0.12s !important; }
+        .d2 { animation-delay: 0.22s !important; }
+        .d3 { animation-delay: 0.32s !important; }
+        .d4 { animation-delay: 0.42s !important; }
       }
     </style>
   </head>
@@ -1020,10 +1140,6 @@
               loading="eager"
               decoding="async"
             />
-            <div class="portrait-caption">
-              <strong data-i18n="bio_h2">Hi, I'm Mohamed Khalifa</strong>
-              <span data-i18n="bio_avail_v">✓ Open to Projects</span>
-            </div>
           </div>
         </div>
       </section>
@@ -1042,21 +1158,6 @@
                 I don't just build pages. I design complete digital experiences
                 that support your business goals.
               </p>
-            </div>
-            <div class="premium-image">
-              <div class="code-symbols">
-                <span class="code-char char-1">{</span>
-                <span class="code-char char-2">&lt;</span>
-                <span class="code-char char-3">/</span>
-                <span class="code-char char-4">&gt;</span>
-                <span class="code-char char-5">}</span>
-                <span class="code-char char-6">;</span>
-                <div class="center-text">
-                  <p data-i18n="about_plus_code_label">
-                    Clean Code &amp; Design
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
           <div class="value-grid">
@@ -1109,16 +1210,13 @@
               Strategic Thinking + Clean Execution
             </h3>
             <p data-i18n="bio_p1">
-              I am a Web Developer with solid front-end experience in building
-              websites and web applications.
+              I am a Web Developer with solid front-end experience in building websites and web applications that translate design mockups into reliable, production-ready interfaces.
             </p>
             <p data-i18n="bio_p2">
-              My work focuses on clean code, reusable components, and practical
-              business outcomes.
+              My work focuses on writing clean, scalable front-end code, styling reusable UI components, and delivering user-centered solutions that meet both business goals and technical requirements.
             </p>
             <p data-i18n="bio_p3">
-              I collaborate effectively with design and content teams to ensure
-              polished delivery.
+              Alongside development, I collaborate effectively with design and content teams, review implementation quality, and support deployment readiness to ensure smooth delivery.
             </p>
             <div class="profile-meta">
               <div class="profile-meta-item">
@@ -1160,22 +1258,7 @@
                 >My resume → Download CV</a
               >
             </div>
-          </article>
-          <article class="profile-image-card reveal-right d2">
-            <div class="profile-code-symbols">
-              <span class="profile-code-char profile-char-1">{</span>
-              <span class="profile-code-char profile-char-2">&lt;</span>
-              <span class="profile-code-char profile-char-3">/</span>
-              <span class="profile-code-char profile-char-4">&gt;</span>
-              <span class="profile-code-char profile-char-5">}</span>
-              <span class="profile-code-char profile-char-6">;</span>
-              <div class="profile-center-text">
-                <p data-i18n="about_profile_code_label">Strategic Thinking</p>
-              </div>
-            </div>
-            <span class="floating-chip chip-a">Frontend</span>
-            <span class="floating-chip chip-b">WordPress</span>
-          </article>
+
         </div>
       </section>
 

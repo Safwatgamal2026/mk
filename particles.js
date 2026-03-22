@@ -235,6 +235,13 @@
 //  Scroll reveal — IntersectionObserver
 // ══════════════════════════════════════════
 (function () {
+  // تحديد threshold بناءً على حجم الشاشة
+  function getThreshold() {
+    if (window.innerWidth <= 768) return 0.15; // Mobile: أقل محتوى
+    if (window.innerWidth <= 1024) return 0.12; // Tablet
+    return 0.1; // Desktop
+  }
+
   const obs = new IntersectionObserver(
     (entries) => {
       entries.forEach((e) => {
@@ -244,7 +251,7 @@
         }
       });
     },
-    { threshold: 0.12 },
+    { threshold: getThreshold() },
   );
 
   function initReveal() {
@@ -255,6 +262,17 @@
       )
       .forEach((el) => obs.observe(el));
   }
+
+  // معالجة تغيير حجم النافذة
+  window.addEventListener("resize", () => {
+    // إعادة تهيئة الـ observer عند تغير حجم الشاشة
+    setTimeout(() => {
+      const elements = document.querySelectorAll(
+        ".reveal:not(.revealed), .reveal-left:not(.revealed), .reveal-right:not(.revealed), .reveal-scale:not(.revealed), .fade-up:not(.revealed)",
+      );
+      elements.forEach((el) => obs.observe(el));
+    }, 200);
+  });
 
   // إذا كان DOM جاهزاً بالفعل (loaded script)
   if (document.readyState === "loading") {
