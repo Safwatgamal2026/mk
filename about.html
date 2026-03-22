@@ -61,20 +61,42 @@
           0 24px 64px rgba(0, 0, 0, 0.4),
           0 0 32px rgba(74, 222, 128, 0.2),
           inset 0 0 24px rgba(74, 222, 128, 0.08);
-        animation: portrait-float 6s ease-in-out infinite;
+        animation: none;
         margin: 0 auto;
+        transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+        will-change: transform, box-shadow, filter;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+      }
+      .about-hero-portrait:hover {
+        transform: none;
+        animation: none;
       }
       @keyframes portrait-float {
-        0%,
-        100% {
+        0% {
           transform: translateY(0px);
         }
         50% {
-          transform: translateY(-16px);
+          transform: translateY(-1.6px);
+        }
+        100% {
+          transform: translateY(0px);
         }
       }
-      .about-hero-portrait:hover {
-        animation: portrait-glow 2s ease-in-out infinite;
+      @keyframes portrait-pulse-shadow {
+        0%,
+        100% {
+          box-shadow:
+            0 24px 64px rgba(0, 0, 0, 0.4),
+            0 0 32px rgba(74, 222, 128, 0.2),
+            inset 0 0 24px rgba(74, 222, 128, 0.08);
+        }
+        50% {
+          box-shadow:
+            0 27px 70px rgba(0, 0, 0, 0.46),
+            0 0 42px rgba(74, 222, 128, 0.24),
+            inset 0 0 28px rgba(74, 222, 128, 0.11);
+        }
       }
       @keyframes portrait-glow {
         0%,
@@ -87,16 +109,18 @@
         }
         50% {
           box-shadow:
-            0 24px 64px rgba(0, 0, 0, 0.4),
-            0 0 48px rgba(74, 222, 128, 0.35),
-            0 0 72px rgba(74, 222, 128, 0.5),
-            inset 0 0 32px rgba(74, 222, 128, 0.15);
+            0 26px 68px rgba(0, 0, 0, 0.45),
+            0 0 44px rgba(74, 222, 128, 0.35),
+            0 0 64px rgba(74, 222, 128, 0.5),
+            inset 0 0 34px rgba(74, 222, 128, 0.16);
         }
       }
       .about-hero-portrait img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transform: translateZ(0);
+        backface-visibility: hidden;
       }
       .about-hero-portrait::after {
         content: "";
@@ -211,13 +235,27 @@
       }
 
       /* Staggered delays for grouped reveals */
-      .delay-1 { animation-delay: 0.28s; }
-      .delay-2 { animation-delay: 0.48s; }
-      .delay-3 { animation-delay: 0.68s; }
-      .d1 { animation-delay: 0.3s; }
-      .d2 { animation-delay: 0.5s; }
-      .d3 { animation-delay: 0.7s; }
-      .d4 { animation-delay: 0.9s; }
+      .delay-1 {
+        animation-delay: 0.28s;
+      }
+      .delay-2 {
+        animation-delay: 0.48s;
+      }
+      .delay-3 {
+        animation-delay: 0.68s;
+      }
+      .d1 {
+        animation-delay: 0.3s;
+      }
+      .d2 {
+        animation-delay: 0.5s;
+      }
+      .d3 {
+        animation-delay: 0.7s;
+      }
+      .d4 {
+        animation-delay: 0.9s;
+      }
 
       .profile-shell {
         display: grid;
@@ -226,10 +264,11 @@
         margin-top: 0.5rem;
       }
       .profile-card {
-        background: var(--card);
+        background: rgba(14, 20, 32, 0.58);
         border: 1px solid var(--border);
         border-radius: 16px;
         padding: 1.2rem;
+        backdrop-filter: blur(6px);
       }
       .profile-card h3 {
         font-family: var(--font-en);
@@ -252,7 +291,7 @@
       }
       .profile-meta-item {
         border: 1px solid rgba(74, 222, 128, 0.2);
-        background: rgba(74, 222, 128, 0.06);
+        background: rgba(74, 222, 128, 0.04);
         border-radius: 12px;
         padding: 0.65rem;
       }
@@ -379,16 +418,17 @@
         background:
           radial-gradient(
             110% 80% at 0% 0%,
-            rgba(74, 222, 128, 0.1),
+            rgba(74, 222, 128, 0.07),
             transparent 60%
           ),
           linear-gradient(
             145deg,
-            rgba(14, 20, 32, 0.96),
-            rgba(10, 15, 24, 0.96)
+            rgba(14, 20, 32, 0.74),
+            rgba(10, 15, 24, 0.74)
           );
         padding: 1.4rem;
         margin-top: 0.4rem;
+        backdrop-filter: blur(7px);
       }
       .premium-content {
         display: grid;
@@ -525,8 +565,9 @@
       .value-card {
         border-radius: 14px;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.02);
+        background: rgba(255, 255, 255, 0.012);
         padding: 1rem;
+        backdrop-filter: blur(5px);
       }
       .value-card h3 {
         font-family: var(--font-en);
@@ -562,7 +603,7 @@
       }
       .skills-highlight {
         border: 1px solid rgba(74, 222, 128, 0.18);
-        background: rgba(74, 222, 128, 0.06);
+        background: rgba(74, 222, 128, 0.04);
         border-radius: 10px;
         padding: 0.62rem;
       }
@@ -578,10 +619,11 @@
         color: var(--text);
       }
       .skills-col {
-        background: var(--card);
+        background: rgba(14, 20, 32, 0.56);
         border: 1px solid var(--border);
         border-radius: 16px;
         padding: 1.1rem;
+        backdrop-filter: blur(6px);
       }
       .skills-col h3 {
         font-family: var(--font-en);
@@ -612,7 +654,7 @@
         border-radius: 12px;
         border: 1px solid rgba(74, 222, 128, 0.18);
         padding: 0.8rem;
-        background: rgba(74, 222, 128, 0.06);
+        background: rgba(74, 222, 128, 0.04);
       }
       .skills-photo-wrap {
         display: flex;
@@ -653,8 +695,9 @@
       .specialty-card {
         border-radius: 12px;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.02);
+        background: rgba(255, 255, 255, 0.012);
         padding: 0.85rem;
+        backdrop-filter: blur(5px);
       }
       .specialty-card h4 {
         font-family: var(--font-en);
@@ -704,9 +747,10 @@
       .exp-card {
         border-radius: 12px;
         border: 1px solid rgba(74, 222, 128, 0.15);
-        background: rgba(74, 222, 128, 0.03);
+        background: rgba(74, 222, 128, 0.02);
         overflow: hidden;
         transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(5px);
       }
       .exp-card:last-child {
         border-bottom: 1px solid rgba(74, 222, 128, 0.15);
@@ -715,7 +759,7 @@
         border-top: 1px solid rgba(74, 222, 128, 0.15);
       }
       .exp-card:hover {
-        background: rgba(74, 222, 128, 0.12);
+        background: rgba(74, 222, 128, 0.08);
         border-color: rgba(74, 222, 128, 0.35);
         box-shadow: 0 8px 24px rgba(74, 222, 128, 0.15);
       }
@@ -834,8 +878,9 @@
       .cred-card {
         border-radius: 14px;
         border: 1px solid var(--border);
-        background: var(--card);
+        background: rgba(14, 20, 32, 0.56);
         padding: 1rem;
+        backdrop-filter: blur(6px);
       }
       .cred-card h3 {
         font-family: var(--font-en);
@@ -911,7 +956,7 @@
         margin-top: 0.85rem;
         border: 1px solid rgba(74, 222, 128, 0.18);
         border-radius: 12px;
-        background: rgba(74, 222, 128, 0.05);
+        background: rgba(74, 222, 128, 0.035);
         padding: 0.7rem;
       }
       .prog-stack h4 {
@@ -984,13 +1029,27 @@
           width: 280px;
           height: 280px;
         }
-        .delay-1 { animation-delay: 0.15s !important; }
-        .delay-2 { animation-delay: 0.25s !important; }
-        .delay-3 { animation-delay: 0.35s !important; }
-        .d1 { animation-delay: 0.2s !important; }
-        .d2 { animation-delay: 0.35s !important; }
-        .d3 { animation-delay: 0.5s !important; }
-        .d4 { animation-delay: 0.65s !important; }
+        .delay-1 {
+          animation-delay: 0.15s !important;
+        }
+        .delay-2 {
+          animation-delay: 0.25s !important;
+        }
+        .delay-3 {
+          animation-delay: 0.35s !important;
+        }
+        .d1 {
+          animation-delay: 0.2s !important;
+        }
+        .d2 {
+          animation-delay: 0.35s !important;
+        }
+        .d3 {
+          animation-delay: 0.5s !important;
+        }
+        .d4 {
+          animation-delay: 0.65s !important;
+        }
       }
       @media (max-width: 768px) {
         .about-page section {
@@ -1006,6 +1065,10 @@
           width: 240px;
           height: 240px;
           margin-top: 1rem;
+          animation: none;
+        }
+        .about-hero-portrait:hover {
+          animation: none;
         }
         .hero-tags,
         .about-premium-cta,
@@ -1045,13 +1108,27 @@
         .specialty-grid {
           grid-template-columns: 1fr;
         }
-        .delay-1 { animation-delay: 0.1s !important; }
-        .delay-2 { animation-delay: 0.18s !important; }
-        .delay-3 { animation-delay: 0.26s !important; }
-        .d1 { animation-delay: 0.12s !important; }
-        .d2 { animation-delay: 0.22s !important; }
-        .d3 { animation-delay: 0.32s !important; }
-        .d4 { animation-delay: 0.42s !important; }
+        .delay-1 {
+          animation-delay: 0.1s !important;
+        }
+        .delay-2 {
+          animation-delay: 0.18s !important;
+        }
+        .delay-3 {
+          animation-delay: 0.26s !important;
+        }
+        .d1 {
+          animation-delay: 0.12s !important;
+        }
+        .d2 {
+          animation-delay: 0.22s !important;
+        }
+        .d3 {
+          animation-delay: 0.32s !important;
+        }
+        .d4 {
+          animation-delay: 0.42s !important;
+        }
       }
     </style>
   </head>
@@ -1210,13 +1287,19 @@
               Strategic Thinking + Clean Execution
             </h3>
             <p data-i18n="bio_p1">
-              I am a Web Developer with solid front-end experience in building websites and web applications that translate design mockups into reliable, production-ready interfaces.
+              I am a Web Developer with solid front-end experience in building
+              websites and web applications that translate design mockups into
+              reliable, production-ready interfaces.
             </p>
             <p data-i18n="bio_p2">
-              My work focuses on writing clean, scalable front-end code, styling reusable UI components, and delivering user-centered solutions that meet both business goals and technical requirements.
+              My work focuses on writing clean, scalable front-end code, styling
+              reusable UI components, and delivering user-centered solutions
+              that meet both business goals and technical requirements.
             </p>
             <p data-i18n="bio_p3">
-              Alongside development, I collaborate effectively with design and content teams, review implementation quality, and support deployment readiness to ensure smooth delivery.
+              Alongside development, I collaborate effectively with design and
+              content teams, review implementation quality, and support
+              deployment readiness to ensure smooth delivery.
             </p>
             <div class="profile-meta">
               <div class="profile-meta-item">
@@ -1258,7 +1341,7 @@
                 >My resume → Download CV</a
               >
             </div>
-
+          </article>
         </div>
       </section>
 

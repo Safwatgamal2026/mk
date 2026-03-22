@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap");
 
 *,
 *::before,
@@ -25,7 +25,7 @@
   --nav-h: 72px;
   --font-en: "Montserrat", sans-serif;
   --font-body: "Montserrat", sans-serif;
-  --font-ar: "Montserrat", sans-serif;
+  --font-ar: "Noto Kufi Arabic", sans-serif;
 }
 
 html {
@@ -67,13 +67,60 @@ canvas {
 [dir="rtl"] h3 {
   font-family: var(--font-ar);
   letter-spacing: 0;
+  line-height: 1.35;
 }
 [dir="rtl"] body {
   font-family: var(--font-ar);
+  font-weight: 400;
+  line-height: 1.9;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 [dir="rtl"] .section-label {
   font-family: var(--font-ar);
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+[dir="rtl"] nav .nav-links a,
+[dir="rtl"] nav .nav-cta,
+[dir="rtl"] nav .lang-toggle {
+  font-family: var(--font-ar);
+}
+[dir="rtl"] p,
+[dir="rtl"] li,
+[dir="rtl"] .section-sub,
+[dir="rtl"] .btn,
+[dir="rtl"] .nav-links a {
+  line-height: 1.9;
+}
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6 {
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  [dir="rtl"] body {
+    line-height: 1.85;
+  }
+  [dir="rtl"] p,
+  [dir="rtl"] li,
+  [dir="rtl"] .section-sub,
+  [dir="rtl"] .btn,
+  [dir="rtl"] .nav-links a {
+    line-height: 1.85;
+    font-size: 0.98em;
+  }
+  [dir="rtl"] .section-title,
+  [dir="rtl"] .hero-name,
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3 {
+    line-height: 1.42;
+  }
 }
 
 /* PARTICLE CANVAS */
@@ -621,6 +668,131 @@ footer p {
   color: var(--green);
 }
 
+/* FLOATING ACTIONS */
+.floating-actions {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+[dir="rtl"] .floating-actions {
+  right: 20px;
+  left: auto;
+}
+
+.float-btn {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: 1px solid var(--border-hover);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.float-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.42);
+}
+
+.whatsapp-float {
+  position: relative;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.whatsapp-float svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+.whatsapp-float::before {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 1px solid rgba(37, 211, 102, 0.45);
+  animation: waPing 2.2s ease-out infinite;
+}
+
+@keyframes waPing {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+.back-to-top {
+  --back-progress: 0;
+  position: fixed;
+  left: 20px;
+  bottom: 24px;
+  z-index: 1201;
+  cursor: pointer;
+  color: hsl(0 0% calc(88% + 12% * var(--back-progress)));
+  background: linear-gradient(
+    145deg,
+    hsl(
+      calc(220 - 72 * var(--back-progress))
+        calc(30% + 55% * var(--back-progress))
+        calc(18% + 35% * var(--back-progress))
+    ),
+    hsl(
+      calc(200 - 55 * var(--back-progress))
+        calc(35% + 58% * var(--back-progress))
+        calc(15% + 27% * var(--back-progress))
+    )
+  );
+  border-color: hsla(
+    calc(195 - 45 * var(--back-progress)),
+    calc(35% + 45% * var(--back-progress)),
+    calc(60% + 18% * var(--back-progress)),
+    calc(0.15 + 0.5 * var(--back-progress))
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease,
+    background 0.3s linear,
+    border-color 0.3s linear,
+    color 0.3s linear;
+}
+
+[dir="rtl"] .back-to-top {
+  left: auto;
+  right: 20px;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.4),
+    0 0 20px hsla(190, 95%, 60%, calc(0.08 + 0.24 * var(--back-progress)));
+}
+
 /* PAGE HERO */
 .page-hero {
   padding: 5rem 5% 3rem;
@@ -822,6 +994,29 @@ footer p {
   .footer-links {
     justify-content: center;
     gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .floating-actions {
+    right: 14px;
+    bottom: 16px;
+  }
+  [dir="rtl"] .floating-actions {
+    right: 14px;
+    left: auto;
+  }
+  .float-btn {
+    width: 50px;
+    height: 50px;
+  }
+  .back-to-top {
+    left: 14px;
+    bottom: 16px;
+  }
+  [dir="rtl"] .back-to-top {
+    left: auto;
+    right: 14px;
   }
 }
 
