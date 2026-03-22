@@ -1,0 +1,32 @@
+Mohamed Khalifa
+Web Developer
+
+Contact
+- Phone: +966 532 719 336
+- Email: mmd1790@gmail.com
+- Location: Cairo, Egypt
+
+Profile
+Web developer with strong front-end experience building responsive websites and web applications. Focused on clean code, performance, and business-driven user experience.
+
+Core Skills
+- HTML5, CSS3, JavaScript
+- React.js, Tailwind CSS, Bootstrap
+- WordPress development and customization
+- UI/UX implementation
+- Performance optimization and SEO basics
+
+Experience
+- Web Developer, Manarat Co (2021 - Present)
+- Freelance Web Developer, Hsoub (2018 - 2021)
+- GIS Specialist, Orascom Construction (2016 - 2018)
+
+Education
+- Bachelor's Degree in Geographic Information Systems, Assiut University (2011 - 2014)
+- Egfwd Web Development Scholarship, Udacity (2017 - 2018)
+- Advanced Web Development Learning Path, Lynda (2020 - 2021)
+
+Languages
+- Arabic
+- English
+- French
